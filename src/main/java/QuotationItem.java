@@ -8,18 +8,18 @@ public class QuotationItem {
 
     public QuotationItem() {}
     public QuotationItem(String ProductCode, int quantity, BigDecimal price) {
-
+        //判断商品编码是否合法
         ProductValidUtil.validProductCode(ProductCode);
+        //标准化商品编码为大写且去掉首尾空格，赋值
         this.ProductCode = ProductCode.trim().toUpperCase(Locale.ROOT);
+        //判断数量合法
         ProductValidUtil.validQuantity(quantity);
+        //赋值数量
         this.quantity = quantity;
+        //判断价格合法
         ProductValidUtil.validPrice(price);
-        if (price.compareTo(BigDecimal.ZERO) == 0) {
-            this.price = BigDecimal.ZERO;
-            System.out.println("该商品："+this.ProductCode+"为赠品");
-        } else {
+        //赋值价格
             this.price=price;
-        }
     }
 
     public String getProductCode() {
@@ -45,13 +45,11 @@ public class QuotationItem {
     }
 
     public void setPrice(BigDecimal price) {
+        //判断价格合法
         ProductValidUtil.validPrice(price);
-        if (price.compareTo(BigDecimal.ZERO) == 0) {
-            this.price = BigDecimal.ZERO;
-            System.out.println("该商品："+this.ProductCode+"为赠品");
-        } else {
+        //判断是否为赠品
+        //赋值价格
             this.price=price;
-        }
     }
 
     public BigDecimal getSum() {

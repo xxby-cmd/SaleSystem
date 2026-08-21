@@ -1,14 +1,27 @@
-target/
+# Maven / Java build output
+/target/
+**/target/
+*.class
+*.log
+hs_err_pid*
+replay_pid*
+
+# Keep Maven Wrapper files versioned when the project adds them.
 !.mvn/wrapper/maven-wrapper.jar
-!**/src/main/**/target/
-!**/src/test/**/target/
-.kotlin
+
+# Local dependency or installer caches
+/.m2/
+/.codex-downloads/
+
+# Local learning/navigation context. These directories include private files
+# and are intentionally not part of the public project repository.
+/导航/
+/学习笔记/
+
+.kotlin/
 
 ### IntelliJ IDEA ###
-.idea/modules.xml
-.idea/jarRepositories.xml
-.idea/compiler.xml
-.idea/libraries/
+/.idea/
 *.iws
 *.iml
 *.ipr
@@ -33,7 +46,9 @@ build/
 !**/src/test/**/build/
 
 ### VS Code ###
-.vscode/
+/.vscode/
 
-### Mac OS ###
+### Operating system files ###
 .DS_Store
+Thumbs.db
+Desktop.ini

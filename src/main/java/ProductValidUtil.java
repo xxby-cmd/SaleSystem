@@ -28,14 +28,10 @@ public class ProductValidUtil {
     }
 
     public static void validPrice(BigDecimal price) {
-        if(price==null){
+        if (price == null) {
             throw new IllegalArgumentException("价格不能为空");
-        }
-        else if(price.compareTo(BigDecimal.ZERO)<0){
+        } else if (price.compareTo(BigDecimal.ZERO) < 0) {
             throw new IllegalArgumentException("价格必须不能小于0");
         }
-
     }
-
-
 }
