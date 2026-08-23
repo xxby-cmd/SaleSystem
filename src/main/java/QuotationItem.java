@@ -9,15 +9,15 @@ public class QuotationItem {
     public QuotationItem() {}
     public QuotationItem(String ProductCode, int quantity, BigDecimal price) {
         //判断商品编码是否合法
-        ProductValidUtil.validProductCode(ProductCode);
+        ValidationUtil.validProductCode(ProductCode);
         //标准化商品编码为大写且去掉首尾空格，赋值
         this.ProductCode = ProductCode.trim().toUpperCase(Locale.ROOT);
         //判断数量合法
-        ProductValidUtil.validQuantity(quantity);
+        ValidationUtil.validQuantity(quantity);
         //赋值数量
         this.quantity = quantity;
         //判断价格合法
-        ProductValidUtil.validPrice(price);
+        ValidationUtil.validPrice(price);
         //赋值价格
             this.price=price;
     }
@@ -27,7 +27,7 @@ public class QuotationItem {
     }
 
     public void setProductCode(String ProductCode) {
-        ProductValidUtil.validProductCode(ProductCode);
+        ValidationUtil.validProductCode(ProductCode);
         this.ProductCode = ProductCode.trim().toUpperCase(Locale.ROOT);;
     }
 
@@ -36,7 +36,7 @@ public class QuotationItem {
     }
 
     public void setQuantity(int quantity) {
-        ProductValidUtil.validQuantity(quantity);
+        ValidationUtil.validQuantity(quantity);
         this.quantity = quantity;
     }
 
@@ -46,7 +46,7 @@ public class QuotationItem {
 
     public void setPrice(BigDecimal price) {
         //判断价格合法
-        ProductValidUtil.validPrice(price);
+        ValidationUtil.validPrice(price);
         //判断是否为赠品
         //赋值价格
             this.price=price;

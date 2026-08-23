@@ -9,9 +9,9 @@ public class ProductModel {
     public ProductModel(String productCode) {
         //判断产品名称是否合法和重复
 
-        ProductValidUtil.validProductCode(productCode);
+        ValidationUtil.validProductCode(productCode);
         productCode = productCode.trim().toUpperCase(Locale.ROOT);
-        ProductValidUtil.validProductCode(productCode,productList);
+        ValidationUtil.validProductCode(productCode,productList);
         this.productCode = productCode;
         productList.add(this);
     }
@@ -22,11 +22,11 @@ public class ProductModel {
 
     public void setProductCode(String productCode) {
         //判断产品名称是否合法
-        ProductValidUtil.validProductCode(productCode);
+        ValidationUtil.validProductCode(productCode);
         //标准化产品名称
         productCode = productCode.trim().toUpperCase(Locale.ROOT);
         //判断产品名称是否重复
-        ProductValidUtil.validProductCode(productCode,productList);
+        ValidationUtil.validProductCode(productCode,productList);
         //获取索引并更新产品名称
         if(this.productCode==null){
             this.productCode = productCode;
