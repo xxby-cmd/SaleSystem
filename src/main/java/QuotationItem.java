@@ -19,7 +19,7 @@ public class QuotationItem {
         //判断价格合法
         ValidationUtil.validPrice(price);
         //赋值价格
-            this.price=price;
+        this.price=price;
     }
 
     public String getProductCode() {

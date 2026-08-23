@@ -1,4 +1,5 @@
 import java.math.BigDecimal;
+import java.time.LocalDate;
 import java.util.ArrayList;
 
 public class ValidationUtil {
@@ -43,4 +44,13 @@ public class ValidationUtil {
             throw new IllegalArgumentException("报价单明细不完整");
         }
     }
+    //判断有效期是否合法
+    public static void validValidUntil(LocalDate validUntil) {
+        if (validUntil == null) {
+            throw new IllegalArgumentException("有效期不能为空");
+        } else if (validUntil.isBefore(LocalDate.of(2026,8,23))) {
+            throw new IllegalArgumentException("有效期不能早于2026-08-23");
+        }
+    }
+
 }

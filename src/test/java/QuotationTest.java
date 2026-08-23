@@ -2,6 +2,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.math.BigDecimal;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -9,7 +10,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 
 public class QuotationTest {
-    private Quotation q = new Quotation();
+    private Quotation q = new Quotation(LocalDate.of(2026,8,25));
     //新报价单数量为0
     @Test
     public void testQuotationQuantity(){
@@ -105,7 +106,7 @@ public class QuotationTest {
     public void testQuotationRejectDuplicate(){
 
         QuotationItem qI = new QuotationItem("Sau32x175",100,new BigDecimal("175.00"));
-        Quotation q1=new Quotation(qI);
+        Quotation q1=new Quotation(LocalDate.of(2026,8,25),qI);
         assertEquals(1,q1.getQuantity());
         assertThrows(IllegalArgumentException.class, () -> q1.addItem(new QuotationItem("Sau32x175",100,new BigDecimal("100.00"))));
         assertEquals(1,q1.getQuantity());
@@ -139,5 +140,63 @@ public class QuotationTest {
         assertEquals(1,q.getQuantity());
         assertEquals(qI.getSum(),q.getTotalPrice());
 
+    }
+    //过期校验
+    @Test
+    public void testQuotationAddSuccess(){
+        assertEquals(QuotationStatus.DRAFT,q.getStatus() );
+        assertTrue(q.isValidOn(LocalDate.of(2026,8,24)));
+        assertTrue(q.isValidOn(LocalDate.of(2026,8,25)));
+        assertFalse(q.isValidOn(LocalDate.of(2026,8,26)));
+    }
+    @Test
+    public void testQuotationStatusDraftToConfirmedSuccess(){
+        QuotationItem qI = new QuotationItem("Sau32x175",100,new BigDecimal("175.00"));
+        q.addItem(qI);
+        assertEquals(1,q.getQuantity());
+        q.confirmStatus(LocalDate.of(2026,8,24));
+        assertEquals(QuotationStatus.CONFIRMED,q.getStatus());
+        assertThrows(IllegalStateException.class,()->q.addItem(qI));
+        assertThrows(IllegalStateException.class,()->q.removeItemByProductCode("SAU32x175"));
+        assertEquals(1,q.getQuantity());
+        assertEquals(new BigDecimal("17500.00"),q.getTotalPrice());
+    }
+    //拒绝重复确认
+    @Test
+    public void testQuotationStatusConfirmedToConfirmedSuccess(){
+        QuotationItem qI = new QuotationItem("Sau32x175",100,new BigDecimal("175.00"));
+        Quotation q1=new Quotation(LocalDate.of(2026,8,24));
+        q1.addItem(qI);
+        q1.confirmStatus(LocalDate.of(2026,8,24));
+        assertEquals(QuotationStatus.CONFIRMED,q1.getStatus());
+        assertThrows(IllegalArgumentException.class,()->q1.confirmStatus(LocalDate.of(2026,8,24)));
+    }
+
+    //拒绝过期
+    @Test
+    public void testQuotationStatusDraftToConfirmedFailure1(){
+        QuotationItem qI = new QuotationItem("Sau32x175",100,new BigDecimal("175.00"));
+        Quotation q1=new Quotation(LocalDate.of(2026,8,24));
+        q1.addItem(qI);
+        assertThrows(IllegalArgumentException.class,()->q1.confirmStatus(LocalDate.of(2026,8,26)));
+        assertEquals(QuotationStatus.DRAFT,q1.getStatus());
+
+
+    }
+    //拒绝空值确认
+    @Test
+    public void testQuotationStatusDraftToConfirmedFailure2(){
+        Quotation q1=new Quotation(LocalDate.of(2026,8,24));
+        assertThrows(IllegalArgumentException.class,()->q1.confirmStatus(LocalDate.of(2026,8,23)));
+        assertEquals(QuotationStatus.DRAFT,q1.getStatus());
+    }
+    //拒绝空日期确认
+    @Test
+    public void testQuotationStatusDraftToConfirmedFailure3(){
+        Quotation q1=new Quotation(LocalDate.of(2026,8,24));
+        QuotationItem qI = new QuotationItem("Sau32x175",100,new BigDecimal("175.00"));
+        q1.addItem(qI);
+        assertThrows(IllegalArgumentException.class,()->q1.confirmStatus(null));
+        assertEquals(QuotationStatus.DRAFT,q1.getStatus());
     }
 }
