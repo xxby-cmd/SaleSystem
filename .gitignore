@@ -11,6 +11,7 @@ replay_pid*
 
 # Local dependency or installer caches
 /.m2/
+/.mvn/jvm.config
 /.codex-downloads/
 
 # Local learning/navigation context. These directories include private files
