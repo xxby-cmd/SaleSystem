@@ -5,7 +5,7 @@ import java.time.LocalDate;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-public class OrderTest {
+public class TestOrder{
     private Quotation quotation=new Quotation(LocalDate.of(2026,8,26),new QuotationItem("SAC32x100",1, BigDecimal.valueOf(100)));
 
     @Test

@@ -1,4 +1,4 @@
-package HashDeduplication哈希判重;
+package 集合判重与去重;
 
 import java.util.HashSet;
 import java.util.Set;

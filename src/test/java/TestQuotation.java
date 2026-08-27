@@ -9,7 +9,7 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.*;
 
 
-public class QuotationTest {
+public class TestQuotation{
     private Quotation q = new Quotation(LocalDate.of(2026,8,25));
     //新报价单数量为0
     @Test
