@@ -1,4 +1,5 @@
 import java.util.HashMap;
+import java.util.Locale;
 import java.util.Map;
 
 public class ProductCatalog {
@@ -29,7 +30,21 @@ public class ProductCatalog {
         productCatalog.put(productModel.getProductCode(),productModel);
     }
 
-    //查询产品
+    //删除商品
+    public boolean removeProductCode(String productCode) {
+        if (productCode == null) {
+            throw new IllegalArgumentException("产品编码不能为空");
+        }
+        productCode = productCode.trim();
+        if(productCode.isEmpty()){
+            throw new IllegalArgumentException("产品编码不能为空字符串或全为空格");
+        }
+        productCode = productCode.toUpperCase(Locale.ROOT);
+        ProductModel productModel = productCatalog.remove(productCode);
+        return productModel!=null;
+    }
+
+    //查询商品信息
     public ProductModel findByProductCode(String productCode) {
         if (productCode == null) {
             throw new IllegalArgumentException("产品编码不能为空");
@@ -38,7 +53,7 @@ public class ProductCatalog {
         if(productCode.isEmpty()){
             throw new IllegalArgumentException("产品编码不能为空字符串或全为空格");
         }
-        productCode = productCode.toUpperCase();
+        productCode = productCode.toUpperCase(Locale.ROOT);
         return productCatalog.get(productCode);
     }
     //查询是否包含商品
@@ -50,7 +65,7 @@ public class ProductCatalog {
         if(productCode.isEmpty()){
             throw new IllegalArgumentException("产品编码不能为空字符串或全为空格");
         }
-        productCode = productCode.toUpperCase();
+        productCode = productCode.toUpperCase(Locale.ROOT);
 
         return productCatalog.containsKey(productCode);
     }

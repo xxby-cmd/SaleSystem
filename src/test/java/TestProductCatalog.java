@@ -53,5 +53,33 @@ public class TestProductCatalog {
         assertEquals(productModel, productCatalog.findByProductCode("Sau32x150"));
         assertNull(productCatalog.findByProductCode("Sau32x1501"));
     }
+    @Test
+    public void testRemoveByProductCode() {
+        productCatalog.addProductModel(productModel);
+        assertEquals(productModel, productCatalog.findByProductCode("Sau32x150"));
+        assertEquals(1, productCatalog.size());
+        assertTrue(productCatalog.removeProductCode("Sau32x150"));
+        assertEquals(0, productCatalog.size());
+        assertNull(productCatalog.findByProductCode("Sau32x150"));
+        assertFalse(productCatalog.containsCode("Sau32x150"));
+    }
+    @Test
+    public void testRemoveByProductCodeIgnoreCase() {
+        productCatalog.addProductModel(productModel);
+        assertEquals(productModel, productCatalog.findByProductCode("Sau32x150"));
+        assertEquals(1, productCatalog.size());
+        assertTrue(productCatalog.removeProductCode("sau32x150"));
+        assertEquals(0, productCatalog.size());
+        assertNull(productCatalog.findByProductCode("SAU32x150"));
+        assertFalse(productCatalog.containsCode("SAU32x150"));
+    }
+    @Test
+    public void testRemoveByProductCodeReject() {
+        productCatalog.addProductModel(productModel);
+        assertThrows(IllegalArgumentException.class,(() -> productCatalog.removeProductCode("")));
+        assertThrows(IllegalArgumentException.class,(() -> productCatalog.removeProductCode("   ")));
+        assertThrows(IllegalArgumentException.class,(() -> productCatalog.removeProductCode(null)));
+    }
+
 
 }

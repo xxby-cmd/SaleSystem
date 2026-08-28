@@ -9,6 +9,12 @@ public class ProductModel {
     private ProductInfo.Unit unit;
     // 构造方法
     public ProductModel() {}
+    public ProductModel(String productCode) {
+        //判断产品名称是否合法和重复
+        ValidationUtil.validProductCode(productCode);
+        productCode = productCode.trim().toUpperCase(Locale.ROOT);
+        this.productCode = productCode;
+    }
     public ProductModel(String productCode,ProductInfo.ProductName productName,ProductInfo.Brand brand,ProductInfo.Series series,ProductInfo.Unit unit) {
         //判断产品名称是否合法和重复
         ValidationUtil.validProductCode(productCode);
