@@ -5,7 +5,7 @@ import java.math.BigDecimal;
 import static org.junit.jupiter.api.Assertions.*;
 
 public class TestProductCatalog {
-    ProductModel productModel = new ProductModel("Sau32x150", ProductInfo.ProductName.StandardCylinder, ProductInfo.Brand.FESTO, ProductInfo.Series.CDJ2B, ProductInfo.Unit.METER);
+    ProductModel productModel = new ProductModel("Sau32x150", ProductInfo.ProductName.StandardCylinder, ProductInfo.Brand.FESTO, ProductInfo.Unit.METER);
     ProductCatalog productCatalog = new ProductCatalog();
     @Test
     public void testAddProductCatalog() {
@@ -27,7 +27,7 @@ public class TestProductCatalog {
     @Test
     public void testRejectRepeatProductModel() {
         productCatalog.addProductModel(productModel);
-        assertThrows(IllegalArgumentException.class,(() -> productCatalog.addProductModel(new ProductModel("SaU32X150", ProductInfo.ProductName.UnStandardCylinder, ProductInfo.Brand.FESTO, ProductInfo.Series.CDJ2B, ProductInfo.Unit.METER))));
+        assertThrows(IllegalArgumentException.class,(() -> productCatalog.addProductModel(new ProductModel("SaU32X150", ProductInfo.ProductName.UnStandardCylinder, ProductInfo.Brand.FESTO, ProductInfo.Unit.METER))));
         assertEquals(1, productCatalog.size());
         assertEquals(productModel, productCatalog.findByProductCode(productModel.getProductCode()));
     }
@@ -38,7 +38,7 @@ public class TestProductCatalog {
     }
     @Test
     public void testRejectUnknownProductModel() {
-        assertThrows(IllegalArgumentException.class,(() -> productCatalog.addProductModel(new ProductModel("Sau32x150", ProductInfo.ProductName.StandardCylinder, ProductInfo.Brand.FESTO, null,null))));
+        assertThrows(IllegalArgumentException.class,(() -> productCatalog.addProductModel(new ProductModel("Sau32x150", ProductInfo.ProductName.StandardCylinder, ProductInfo.Brand.FESTO,null))));
         assertEquals(0, productCatalog.size());
     }
     @Test

@@ -27,6 +27,7 @@ public class ProductInfo {
         OTHER,//其他品牌
     }
     public enum Series {
+        SAU,
         SC,
         SI,
         SDA,
@@ -56,6 +57,17 @@ public class ProductInfo {
         public String getUnitCn() {
             return unitCn;
         }
-
     }
+
+    public enum Suffix {
+        S,
+        J,
+        H,
+        K,
+        SIL,
+        C,
+        CJ,
+
+        OTHER,//其他后缀
+        }
 }

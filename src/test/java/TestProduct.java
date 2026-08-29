@@ -8,7 +8,7 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 public class TestProduct {
     @Test
     public void testProductModel() {
-        ProductModel productModel = new ProductModel("Sau32x150", ProductInfo.ProductName.StandardCylinder, ProductInfo.Brand.FESTO, ProductInfo.Series.CDJ2B, ProductInfo.Unit.METER);
+        ProductModel productModel = new ProductModel("Sau32x150", ProductInfo.ProductName.StandardCylinder, ProductInfo.Brand.FESTO, ProductInfo.Unit.METER);
         assertEquals("SAU32X150", productModel.getProductCode());
         }
         @Test

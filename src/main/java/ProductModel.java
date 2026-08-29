@@ -1,4 +1,3 @@
-import java.util.ArrayList;
 import java.util.Locale;
 
 public class ProductModel {
@@ -7,22 +6,49 @@ public class ProductModel {
     private ProductInfo.Brand brand;
     private ProductInfo.Series series;
     private ProductInfo.Unit unit;
+    private int boreDiameter;//缸径
+    private int strokeLength;//行程
+    private ProductInfo.Suffix suffix;//后缀
     // 构造方法
     public ProductModel() {}
     public ProductModel(String productCode) {
-        //判断产品名称是否合法和重复
-        ValidationUtil.validProductCode(productCode);
-        productCode = productCode.trim().toUpperCase(Locale.ROOT);
-        this.productCode = productCode;
+        //用结构化解析初始化
+        ProductCodeParser pCP=new ProductCodeParser(productCode);
+        this.productCode = pCP.getProductCode();
+        this.series = ProductInfo.Series.valueOf(pCP.getSeries());
+        if(Integer.parseInt(pCP.getBoreDiameter())>0){
+            this.boreDiameter = Integer.parseInt(pCP.getBoreDiameter());
+        }else{
+            throw new IllegalArgumentException("缸径必须大于0");
+        }
+        if(Integer.parseInt(pCP.getStrokeLength())>0){
+            this.strokeLength = Integer.parseInt(pCP.getStrokeLength());
+        }else{
+            throw new IllegalArgumentException("行程必须大于0");
+        }if(pCP.getSuffix()!=null) {
+            this.suffix = ProductInfo.Suffix.valueOf(pCP.getSuffix());
+        }
     }
-    public ProductModel(String productCode,ProductInfo.ProductName productName,ProductInfo.Brand brand,ProductInfo.Series series,ProductInfo.Unit unit) {
-        //判断产品名称是否合法和重复
-        ValidationUtil.validProductCode(productCode);
-        productCode = productCode.trim().toUpperCase(Locale.ROOT);
-        this.productCode = productCode;
+    public ProductModel(String productCode,ProductInfo.ProductName productName,ProductInfo.Brand brand,ProductInfo.Unit unit) {
+        //判断产品名称是否合法
+        ProductCodeParser pCP=new ProductCodeParser(productCode);
+        //用结构化解析初始化
+        this.productCode = pCP.getProductCode();
+        this.series = ProductInfo.Series.valueOf(pCP.getSeries());
+        if(Integer.parseInt(pCP.getBoreDiameter())>0){
+            this.boreDiameter = Integer.parseInt(pCP.getBoreDiameter());
+        }else{
+            throw new IllegalArgumentException("缸径必须大于0");
+        }
+        if(Integer.parseInt(pCP.getStrokeLength())>0){
+            this.strokeLength = Integer.parseInt(pCP.getStrokeLength());
+        }else{
+            throw new IllegalArgumentException("行程必须大于0");
+        }if(pCP.getSuffix()!=null) {
+            this.suffix = ProductInfo.Suffix.valueOf(pCP.getSuffix());
+        }
         this.productName = productName;
         this.brand = brand;
-        this.series = series;
         this.unit = unit;
     }
     //获取产品编码
@@ -45,11 +71,11 @@ public class ProductModel {
     public void setBrand(ProductInfo.Brand brand) {
         this.brand = brand;
     }
-    //获取型号
+    //获取系列
     public ProductInfo.Series getSeries() {
         return series;
     }
-    //设置型号
+    //设置系列
     public void setSeries(ProductInfo.Series series) {
         this.series = series;
     }
@@ -57,7 +83,7 @@ public class ProductModel {
     public ProductInfo.Unit getUnit() {
         return unit;
     }
-    //获取单位中文
+    //获取单位中文名称
     public String getUnitCn() {
         return unit.getUnitCn();
     }
@@ -65,6 +91,17 @@ public class ProductModel {
     public void setUnit(ProductInfo.Unit unit) {
         this.unit = unit;
     }
-
+    //获取缸径
+    public int getBoreDiameter() {
+        return boreDiameter;
+    }
+    //获取行程
+    public int getStrokeLength() {
+        return strokeLength;
+    }
+    //获取后缀
+    public ProductInfo.Suffix getSuffix() {
+        return suffix;
+    }
 
 }

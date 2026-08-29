@@ -11,7 +11,13 @@ public class ProductCatalog {
             throw new NullPointerException("产品为空");
         }else if(productModel.getProductCode() == null){
             throw new IllegalArgumentException("产品编码不能为空");
-        }else if(productModel.getProductName() == null||productModel.getUnit() == null||productModel.getBrand() == null||productModel.getSeries()== null){
+        }else if(productModel.getProductName() == null||
+                 productModel.getUnit() == null||
+                 productModel.getBrand() == null||
+                 productModel.getSeries()== null||
+                 productModel.getBoreDiameter() == 0||
+                 productModel.getStrokeLength() == 0)
+        {
             throw new IllegalArgumentException("产品信息不完整");
         }
         this.productCatalog.put(productModel.getProductCode(),productModel);
@@ -22,7 +28,13 @@ public class ProductCatalog {
             throw new NullPointerException("产品为空");
         }else if(productModel.getProductCode() == null) {
             throw new IllegalArgumentException("产品编码不能为空");
-        }else if(productModel.getProductName() == null||productModel.getUnit() == null||productModel.getBrand() == null||productModel.getSeries()== null){
+        }else if(productModel.getProductName() == null||
+                 productModel.getUnit() == null||
+                 productModel.getBrand() == null||
+                 productModel.getSeries()== null||
+                 productModel.getBoreDiameter() == 0||
+                 productModel.getStrokeLength() == 0)
+        {
                 throw new IllegalArgumentException("产品信息不完整");
         }else if(productCatalog.containsKey(productModel.getProductCode())){
             throw new IllegalArgumentException("产品编码已存在");
