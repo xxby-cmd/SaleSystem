@@ -1,14 +1,13 @@
+import com.xxby.Product.ParseProductCode;
 import org.junit.jupiter.api.Test;
-
-import java.util.regex.Matcher;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-public class TestProductCodeParser {
+public class TestParseProductCode {
     @Test
     public void testParseValidProductCodeSuccess() {
         String productCode = "SAS12X456J";
-        ProductCodeParser parser = new ProductCodeParser(productCode);
+        ParseProductCode parser = new ParseProductCode(productCode);
         assertEquals(productCode, parser.getProductCode());
         assertEquals("SAS", parser.getSeries());
         assertEquals("12", parser.getBoreDiameter());
@@ -18,7 +17,7 @@ public class TestProductCodeParser {
     @Test
     public void testParseValidProductCodeIgnoreCase() {
         String productCode = "  Sas12X456J ";
-        ProductCodeParser parser = new ProductCodeParser(productCode);
+        ParseProductCode parser = new ParseProductCode(productCode);
         assertEquals("SAS12X456J", parser.getProductCode());
         assertEquals("SAS", parser.getSeries());
         assertEquals("12", parser.getBoreDiameter());
@@ -29,7 +28,7 @@ public class TestProductCodeParser {
     //* 测试解析商品编码时，商品编码中不包含后缀
     public void testParseValidProductCodeNoSuffix() {
         String productCode = "  Sas12X456 ";
-        ProductCodeParser parser = new ProductCodeParser(productCode);
+        ParseProductCode parser = new ParseProductCode(productCode);
         assertEquals("SAS12X456", parser.getProductCode());
         assertEquals("SAS", parser.getSeries());
         assertEquals("12", parser.getBoreDiameter());
@@ -39,6 +38,6 @@ public class TestProductCodeParser {
     @Test
     public void testParseProductCodeRejectInvalid() {
         String productCode = "Sas12 s456 ";
-        assertThrows(IllegalArgumentException.class, () -> new ProductCodeParser(productCode));
+        assertThrows(IllegalArgumentException.class, () -> new ParseProductCode(productCode));
     }
 }

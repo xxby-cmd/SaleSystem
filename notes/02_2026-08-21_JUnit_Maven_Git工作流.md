@@ -7,11 +7,11 @@
 ```java
 // 错误：数量 0 会先抛异常，无法证明负价格校验有效
 assertThrows(IllegalArgumentException.class,
-        () -> new QuotationItem("SAU32X175", 0, new BigDecimal("-1")));
+        () -> new com.xxby.Quotation.QuotationItem("SAU32X175", 0, new BigDecimal("-1")));
 
 // 正确：测试负价格时，其他输入全部合法
 assertThrows(IllegalArgumentException.class,
-        () -> new QuotationItem("SAU32X175", 1, new BigDecimal("-1")));
+        () -> new com.xxby.Quotation.QuotationItem("SAU32X175", 1, new BigDecimal("-1")));
 ```
 
 可迁移原则：
@@ -36,6 +36,8 @@ assertThrows(IllegalArgumentException.class,
 进入实例方法说明当前对象存在，因此 `this` 不是 `null`。但对象的字段可以是 `null`，对象也可能尚未加入集合。
 
 ```java
+import com.xxby.Product.ProductModel;
+
 ProductModel product = new ProductModel(); // 对象存在
 // product.productCode 仍可能为 null
 // product 也可能不在 productList 中
@@ -56,6 +58,8 @@ ProductModel product = new ProductModel(); // 对象存在
 `static` 字段属于类，同一 JVM 中的所有对象和测试共享它：
 
 ```java
+import com.xxby.Product.ProductModel;
+
 private static final List<ProductModel> productList = new ArrayList<>();
 ```
 

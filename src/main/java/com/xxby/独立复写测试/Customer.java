@@ -1,4 +1,4 @@
-package 独立复写测试;
+package com.xxby.独立复写测试;
 
 import java.util.Locale;
 

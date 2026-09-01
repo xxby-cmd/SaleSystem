@@ -1,8 +1,8 @@
 package 封闭测试验收;
 
 import org.junit.jupiter.api.Test;
-import 独立复写测试.Customer;
-import 独立复写测试.CustomerDirectory;
+import com.xxby.独立复写测试.Customer;
+import com.xxby.独立复写测试.CustomerDirectory;
 
 import static org.junit.jupiter.api.Assertions.*;
 

@@ -1,3 +1,5 @@
+package com.xxby.Product;
+
 public class ProductInfo {
     public enum ProductName {
         StandardCylinder("标准气缸"),

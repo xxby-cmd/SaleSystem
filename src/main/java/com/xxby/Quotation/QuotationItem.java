@@ -1,3 +1,7 @@
+package com.xxby.Quotation;
+
+import com.xxby.校验规则.ValidationUtil;
+
 import java.math.BigDecimal;
 import java.util.Locale;
 

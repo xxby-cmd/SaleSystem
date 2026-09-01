@@ -1,5 +1,10 @@
+package com.xxby.File;
+
+import com.xxby.Product.ProductCatalog;
+import com.xxby.Product.ProductInfo;
+import com.xxby.Product.ProductModel;
+
 import java.io.*;
-import java.io.File;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Path;
 

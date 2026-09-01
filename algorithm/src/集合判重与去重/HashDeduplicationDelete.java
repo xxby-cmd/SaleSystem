@@ -13,7 +13,6 @@ public class HashDeduplicationDelete {
         for(char c:tS) {
             sb.append(c);
         }
-
         return sb.toString();
     }
 }

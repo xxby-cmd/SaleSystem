@@ -1,3 +1,5 @@
+import com.xxby.File.LoadByFile;
+import com.xxby.Product.ProductCatalog;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 
@@ -9,11 +11,11 @@ import static org.junit.jupiter.api.Assertions.*;
 
 
 public class TestFile {
-    Path filePath = Path.of("src/test/ProductModel.csv");
+    Path filePath = Path.of("src/test/com.xxby.Product.ProductModel.csv");
     ProductCatalog productCatalog=new ProductCatalog();
     @Test
     public void testFileLoaderSuccess(@TempDir Path tempDir) throws IOException {
-        Path tempFilePath = tempDir.resolve("ProductModel.csv");
+        Path tempFilePath = tempDir.resolve("com.xxby.Product.ProductModel.csv");
         Files.writeString(tempFilePath, """
                 productCode,productName,Brand,Series,Unit
                 SAU32X100,StandardCylinder,FESTO,SC,COUNT
@@ -24,7 +26,7 @@ public class TestFile {
     }
     @Test
     public void testFileLoaderUnicodeSuccess(@TempDir Path tempDir) throws IOException {
-        Path tempFilePath = tempDir.resolve("ProductModel.csv");
+        Path tempFilePath = tempDir.resolve("com.xxby.Product.ProductModel.csv");
         Files.writeString(tempFilePath, """
                 \uFEFFproductCode,productName,Brand,Series,Unit
                 SAU32X100,StandardCylinder,FESTO,SC,COUNT
@@ -40,7 +42,7 @@ public class TestFile {
     }
     @Test
     public void testLoadByFileIndependence(@TempDir Path tempDir) throws IOException {
-        Path tempFilePath = tempDir.resolve("ProductModel.csv");
+        Path tempFilePath = tempDir.resolve("com.xxby.Product.ProductModel.csv");
         Files.writeString(tempFilePath, """
                 productCode,productName,Brand,Series,Unit
                 SAU32X100,StandardCylinder,FESTO,SC,COUNT
@@ -55,7 +57,7 @@ public class TestFile {
     }
     @Test
     public void testLoadByFileRejectEmptyFifthColumn(@TempDir Path tempDir) throws IOException {
-        Path tempFilePath = tempDir.resolve("ProductModel.csv");
+        Path tempFilePath = tempDir.resolve("com.xxby.Product.ProductModel.csv");
         Files.writeString(tempFilePath, """
                 productCode,productName,Brand,Series,Unit
                 SAU32X100,StandardCylinder,FESTO,SC,COUNT
@@ -65,7 +67,7 @@ public class TestFile {
     }
     @Test
     public void testLoadByFileRejectErrorEnum(@TempDir Path tempDir) throws IOException {
-        Path tempFilePath = tempDir.resolve("ProductModel.csv");
+        Path tempFilePath = tempDir.resolve("com.xxby.Product.ProductModel.csv");
         Files.writeString(tempFilePath, """
                 productCode,productName,Brand,Series,Unit
                 SAU32X100,StandardCylinder,FESTO,SC,COUNT
@@ -75,7 +77,7 @@ public class TestFile {
     }
     @Test
     public void testLoadByFileRejectRepeatProductCode(@TempDir Path tempDir) throws IOException {
-        Path tempFilePath = tempDir.resolve("ProductModel.csv");
+        Path tempFilePath = tempDir.resolve("com.xxby.Product.ProductModel.csv");
         Files.writeString(tempFilePath, """
                 productCode,productName,Brand,Series,Unit
                 SAU32X100,StandardCylinder,FESTO,SC,COUNT
@@ -86,7 +88,7 @@ public class TestFile {
     }
     @Test
     public void testLoadByFileRejectErrorHead(@TempDir Path tempDir) throws IOException {
-        Path tempFilePath = tempDir.resolve("ProductModel.csv");
+        Path tempFilePath = tempDir.resolve("com.xxby.Product.ProductModel.csv");
         Files.writeString(tempFilePath, """
                 productCo,productName,Brand,Series,Unit
                 SAU32X100,StandardCylinder,FESTO,SC,COUNT
@@ -96,7 +98,7 @@ public class TestFile {
     }
     @Test
     public void testLoadByFileRejectErrorHead2(@TempDir Path tempDir) throws IOException {
-        Path tempFilePath = tempDir.resolve("ProductModel.csv");
+        Path tempFilePath = tempDir.resolve("com.xxby.Product.ProductModel.csv");
         Files.writeString(tempFilePath, """
                 productCode,productNa,Brand,Series,Unit
                 SAU32X100,StandardCylinder,FESTO,SC,COUNT
@@ -106,14 +108,14 @@ public class TestFile {
     }
     @Test
     public void testLoadByFileRejectEmptyFile(@TempDir Path tempDir) throws IOException {
-        Path tempFilePath = tempDir.resolve("ProductModel.csv");
+        Path tempFilePath = tempDir.resolve("com.xxby.Product.ProductModel.csv");
         Files.createFile(tempFilePath);
         LoadByFile lBF = new LoadByFile();
         assertThrows(IllegalArgumentException.class,()->productCatalog = lBF.fileLoader(tempFilePath));
     }
     @Test
     public void testLoadByFileOnlyEHead(@TempDir Path tempDir) throws IOException {
-        Path tempFilePath = tempDir.resolve("ProductModel.csv");
+        Path tempFilePath = tempDir.resolve("com.xxby.Product.ProductModel.csv");
         Files.writeString(tempFilePath, """
                 productCode,productName,Brand,Series,Unit
                 """);

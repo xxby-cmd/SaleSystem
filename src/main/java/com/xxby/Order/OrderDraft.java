@@ -1,3 +1,8 @@
+package com.xxby.Order;
+
+import com.xxby.Quotation.Quotation;
+import com.xxby.Quotation.QuotationStatus;
+
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;

@@ -1,3 +1,7 @@
+package com.xxby.Order;
+
+import com.xxby.Quotation.QuotationItem;
+
 import java.math.BigDecimal;
 
 public class OrderItem {

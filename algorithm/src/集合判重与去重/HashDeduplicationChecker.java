@@ -13,8 +13,6 @@ public class HashDeduplicationChecker {
         }else if(numbers.length==0||numbers.length==1){
             return false;
         }
-
-
         Set<Integer> set = new HashSet<>();
         for (int i : numbers) {
             if (!set.add(i)) {

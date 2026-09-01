@@ -2,10 +2,10 @@
 
 ## 1. 类、对象与字段
 
-- **类**是对象的结构和行为定义，例如 `ProductModel`、`QuotationItem`。
+- **类**是对象的结构和行为定义，例如 `com.xxby.Product.ProductModel`、`com.xxby.Quotation.QuotationItem`。
 - **对象**是根据类创建的具体实例。
 - 字段保存对象状态；方法读取、修改或使用这些状态。
-- Java 普通变量使用小驼峰命名，如 `productCode`；类名使用大驼峰命名，如 `ProductModel`。
+- Java 普通变量使用小驼峰命名，如 `productCode`；类名使用大驼峰命名，如 `com.xxby.Product.ProductModel`。
 
 ```java
 private String productCode;
@@ -18,6 +18,8 @@ private BigDecimal price;
 构造器用于创建对象并设置初始状态：
 
 ```java
+import com.xxby.Quotation.QuotationItem;
+
 QuotationItem item = new QuotationItem("SAU32X100", 3, new BigDecimal("19.80"));
 ```
 
@@ -30,6 +32,8 @@ item.setQuantity(5);
 如果允许先创建空对象再补充属性，就要接受对象暂时处于“不完整状态”：
 
 ```java
+import com.xxby.Quotation.QuotationItem;
+
 QuotationItem item = new QuotationItem();
 ```
 
@@ -150,6 +154,8 @@ BigDecimal displayAmount = amount.setScale(2, RoundingMode.HALF_UP);
 静态集合：
 
 ```java
+import com.xxby.Product.ProductModel;
+
 private static final List<ProductModel> productList = new ArrayList<>();
 ```
 

@@ -1,3 +1,7 @@
+package com.xxby.Quotation;
+
+import com.xxby.校验规则.ValidationUtil;
+
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -9,12 +13,12 @@ public class Quotation {
     private QuotationStatus status = QuotationStatus.DRAFT;
     private final LocalDate validUntil;
 
+    //复制报价单
     //有参构造
     public Quotation(LocalDate validUntil,QuotationItem item){
         this(validUntil);
-        //判断产品名称是否合法
+        //添加明细,明细必须存在且完整
         ValidationUtil.validQuotationItem(item);
-        //添加明细
         items.add(item);
     }
 
@@ -31,7 +35,7 @@ public class Quotation {
         if(status == QuotationStatus.CONFIRMED){
             throw new IllegalStateException("报价单已确认");
         }
-        //添加明细
+        //添加明细,明细必须存在且完整
         ValidationUtil.validQuotationItem(item);
         //检查是否已存在相同商品的明细
         for(QuotationItem i:items){

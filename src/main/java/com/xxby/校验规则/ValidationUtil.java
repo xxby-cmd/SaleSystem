@@ -1,6 +1,10 @@
+package com.xxby.校验规则;
+
+import com.xxby.Quotation.QuotationItem;
+import com.xxby.web.ProductNotFoundException;
+
 import java.math.BigDecimal;
 import java.time.LocalDate;
-import java.util.ArrayList;
 
 public class ValidationUtil {
     //工具类不能创建对象
@@ -8,19 +12,22 @@ public class ValidationUtil {
     //过滤产品编码
     public static void validProductCode(String productCode) {
         if(productCode ==null|| productCode.isEmpty()){
-            throw new IllegalArgumentException("产品编码不能为空");
+            throw new ProductNotFoundException("产品编码不能为空");
         }else if(productCode.isBlank()){
             throw new IllegalArgumentException("产品编码不能为纯空格");
         }
     }
     //判断产品编码是否已存在
-    public static void validProductCode(String ProductCode,ArrayList<ProductModel> productList) {
-        for(ProductModel item:productList){
+    /*
+    public static void validProductCode(String ProductCode) {
+        for(com.xxby.Product.ProductModel item:productList){
             if(item.getProductCode().equals(ProductCode)){
                 throw new IllegalArgumentException("产品编码已存在");
             }
         }
     }
+    */
+
     //判断数量合法
     public static void validQuantity(int quantity) {
         if(quantity<=0){

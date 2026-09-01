@@ -1,3 +1,7 @@
+package com.xxby.Product;
+
+import com.xxby.web.ProductNotFoundException;
+
 import java.util.HashMap;
 import java.util.Locale;
 import java.util.Map;
@@ -8,7 +12,7 @@ public class ProductCatalog {
     public ProductCatalog() {}
     public ProductCatalog(ProductModel productModel) {
         if (productModel == null) {
-            throw new NullPointerException("产品为空");
+            throw new ProductNotFoundException("产品为空");
         }else if(productModel.getProductCode() == null){
             throw new IllegalArgumentException("产品编码不能为空");
         }else if(productModel.getProductName() == null||
@@ -25,7 +29,7 @@ public class ProductCatalog {
     //添加产品
     public void addProductModel(ProductModel productModel) {
         if (productModel == null) {
-            throw new NullPointerException("产品为空");
+            throw new ProductNotFoundException("产品为空");
         }else if(productModel.getProductCode() == null) {
             throw new IllegalArgumentException("产品编码不能为空");
         }else if(productModel.getProductName() == null||
@@ -88,7 +92,7 @@ public class ProductCatalog {
 
     /*
     //修改产品信息
-    public void modifyProductModel(String productCode, ProductModel updatedProductModel) {
+    public void modifyPr    oductModel(String productCode, com.xxby.Product.ProductModel updatedProductModel) {
         if (productCode == null) {
             throw new IllegalArgumentException("产品编码不能为空");
         }

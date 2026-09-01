@@ -1,4 +1,4 @@
-import java.util.Locale;
+package com.xxby.Product;
 
 public class ProductModel {
     private String productCode;
@@ -13,7 +13,7 @@ public class ProductModel {
     public ProductModel() {}
     public ProductModel(String productCode) {
         //用结构化解析初始化
-        ProductCodeParser pCP=new ProductCodeParser(productCode);
+        ParseProductCode pCP=new ParseProductCode(productCode);
         this.productCode = pCP.getProductCode();
         this.series = ProductInfo.Series.valueOf(pCP.getSeries());
         if(Integer.parseInt(pCP.getBoreDiameter())>0){
@@ -31,7 +31,7 @@ public class ProductModel {
     }
     public ProductModel(String productCode,ProductInfo.ProductName productName,ProductInfo.Brand brand,ProductInfo.Unit unit) {
         //判断产品名称是否合法
-        ProductCodeParser pCP=new ProductCodeParser(productCode);
+        ParseProductCode pCP=new ParseProductCode(productCode);
         //用结构化解析初始化
         this.productCode = pCP.getProductCode();
         this.series = ProductInfo.Series.valueOf(pCP.getSeries());

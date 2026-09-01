@@ -1,6 +1,7 @@
+import com.xxby.Product.ProductCatalog;
+import com.xxby.Product.ProductInfo;
+import com.xxby.Product.ProductModel;
 import org.junit.jupiter.api.Test;
-
-import java.math.BigDecimal;
 
 import static org.junit.jupiter.api.Assertions.*;
 
