@@ -12,7 +12,7 @@ public class ValidationUtil {
     //过滤产品编码
     public static void validProductCode(String productCode) {
         if(productCode ==null|| productCode.isEmpty()){
-            throw new ProductNotFoundException("产品编码不能为空");
+            throw new NullPointerException("产品编码不能为空");
         }else if(productCode.isBlank()){
             throw new IllegalArgumentException("产品编码不能为纯空格");
         }
@@ -38,7 +38,7 @@ public class ValidationUtil {
     //判断价格合法
     public static void validPrice(BigDecimal price) {
         if (price == null) {
-            throw new IllegalArgumentException("价格不能为空");
+            throw new NullPointerException("价格不能为空");
         } else if (price.compareTo(BigDecimal.ZERO) < 0) {
             throw new IllegalArgumentException("价格必须不能小于0");
         }
@@ -54,7 +54,7 @@ public class ValidationUtil {
     //判断有效期是否合法
     public static void validValidUntil(LocalDate validUntil) {
         if (validUntil == null) {
-            throw new IllegalArgumentException("有效期不能为空");
+            throw new NullPointerException("有效期不能为空");
         } else if (validUntil.isBefore(LocalDate.of(2026,8,23))) {
             throw new IllegalArgumentException("有效期不能早于2026-08-23");
         }

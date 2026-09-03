@@ -13,6 +13,7 @@ import static org.junit.jupiter.api.Assertions.*;
 public class TestFile {
     Path filePath = Path.of("src/test/com.xxby.Product.ProductModel.csv");
     ProductCatalog productCatalog=new ProductCatalog();
+
     @Test
     public void testFileLoaderSuccess(@TempDir Path tempDir) throws IOException {
         Path tempFilePath = tempDir.resolve("com.xxby.Product.ProductModel.csv");

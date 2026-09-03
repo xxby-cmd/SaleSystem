@@ -38,7 +38,7 @@ public class TestProduct {
             assertThrows(IllegalArgumentException.class, () -> {
                 QuotationItem qI = new QuotationItem("Sau32x175", 8, new BigDecimal("-100.00"));
             });
-            assertThrows(IllegalArgumentException.class, () -> {
+            assertThrows(NullPointerException.class, () -> {
                 QuotationItem qI = new QuotationItem("Sau32x175", 4, null);
             });
         }

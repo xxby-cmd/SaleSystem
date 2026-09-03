@@ -29,7 +29,7 @@ public class ProductCatalog {
     //添加产品
     public void addProductModel(ProductModel productModel) {
         if (productModel == null) {
-            throw new ProductNotFoundException("产品为空");
+            throw new NullPointerException("产品为空");
         }else if(productModel.getProductCode() == null) {
             throw new IllegalArgumentException("产品编码不能为空");
         }else if(productModel.getProductName() == null||
@@ -49,7 +49,7 @@ public class ProductCatalog {
     //删除商品
     public boolean removeProductCode(String productCode) {
         if (productCode == null) {
-            throw new IllegalArgumentException("产品编码不能为空");
+            throw new NullPointerException("产品编码不能为空");
         }
         productCode = productCode.trim();
         if(productCode.isEmpty()){
@@ -63,7 +63,7 @@ public class ProductCatalog {
     //查询商品信息
     public ProductModel findByProductCode(String productCode) {
         if (productCode == null) {
-            throw new IllegalArgumentException("产品编码不能为空");
+            throw new NullPointerException("产品编码不能为空");
         }
         productCode = productCode.trim();
         if(productCode.isEmpty()){
@@ -75,7 +75,7 @@ public class ProductCatalog {
     //查询是否包含商品
     public boolean containsCode(String productCode) {
         if (productCode == null) {
-            throw new IllegalArgumentException("产品编码不能为空");
+            throw new NullPointerException("产品编码不能为空");
         }
         productCode = productCode.trim();
         if(productCode.isEmpty()){

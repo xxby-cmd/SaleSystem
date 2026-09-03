@@ -44,7 +44,7 @@ public class TestProductCatalog {
     }
     @Test
     public void testRejectUnknownFindByProductCode() {
-        assertThrows(IllegalArgumentException.class,(() -> productCatalog.findByProductCode(null)));
+        assertThrows(NullPointerException.class,(() -> productCatalog.findByProductCode(null)));
         assertThrows(IllegalArgumentException.class,(() -> productCatalog.findByProductCode("")));
         assertThrows(IllegalArgumentException.class,(() -> productCatalog.findByProductCode("   ")));
     }
@@ -79,7 +79,7 @@ public class TestProductCatalog {
         productCatalog.addProductModel(productModel);
         assertThrows(IllegalArgumentException.class,(() -> productCatalog.removeProductCode("")));
         assertThrows(IllegalArgumentException.class,(() -> productCatalog.removeProductCode("   ")));
-        assertThrows(IllegalArgumentException.class,(() -> productCatalog.removeProductCode(null)));
+        assertThrows(NullPointerException.class,(() -> productCatalog.removeProductCode(null)));
     }
 
 
