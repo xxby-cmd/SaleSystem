@@ -5,8 +5,6 @@ import com.xxby.web.ProductCatalogCreateRequest;
 import com.xxby.web.ProductCreateRequest;
 import org.springframework.stereotype.Service;
 
-import java.sql.SQLException;
-
 @Service
 public class ProductCatalogService {
 
