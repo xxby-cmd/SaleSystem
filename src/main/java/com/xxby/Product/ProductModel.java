@@ -1,17 +1,16 @@
 package com.xxby.Product;
 
 public class ProductModel {
-    private String productCode;
+    private final String productCode;
     private ProductInfo.ProductName productName;
     private ProductInfo.Brand brand;
     private ProductInfo.Series series;
     private ProductInfo.Unit unit;
-    private int boreDiameter;//缸径
-    private int strokeLength;//行程
+    private final int boreDiameter;//缸径
+    private final int strokeLength;//行程
     private ProductInfo.Suffix suffix;//后缀
     // 构造方法
-    public ProductModel() {}
-    public ProductModel(String productCode) {
+        public ProductModel(String productCode) {
         //用结构化解析初始化
         ParseProductCode pCP=new ParseProductCode(productCode);
         this.productCode = pCP.getProductCode();

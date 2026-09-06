@@ -44,7 +44,7 @@ public class TestProduct {
         }
         @Test
         public void testProductModelEnum () {
-            ProductModel pM = new ProductModel();
+            ProductModel pM = new ProductModel("Sau32x150", ProductInfo.ProductName.StandardCylinder, ProductInfo.Brand.FESTO, ProductInfo.Unit.METER);
             pM.setBrand(ProductInfo.Brand.FESTO);
             pM.setUnit(ProductInfo.Unit.METER);
             assertEquals(ProductInfo.Unit.METER, pM.getUnit());

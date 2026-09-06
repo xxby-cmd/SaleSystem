@@ -12,7 +12,7 @@ public class ProductCodeParserService {
                     temp.getSeries(),
                     temp.getBoreDiameter(),
                     temp.getStrokeLength(),
-                   temp.getSuffix());
+                    temp.getSuffix());
     }
 
 }

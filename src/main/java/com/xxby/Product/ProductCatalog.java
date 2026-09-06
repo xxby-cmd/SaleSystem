@@ -1,16 +1,23 @@
 package com.xxby.Product;
 
-import com.xxby.web.ProductNotFoundException;
+import com.xxby.Exception.ProductNotFoundException;
 
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.Locale;
 import java.util.Map;
+import java.util.function.BiConsumer;
 
 public class ProductCatalog {
-    private Map<String,ProductModel> productCatalog = new HashMap<>();
+    private String productCatalogName="未命名产品目录";
+    private final LinkedHashMap<String,ProductModel> productCatalog = new LinkedHashMap<>();
     //构造方法
     public ProductCatalog() {}
-    public ProductCatalog(ProductModel productModel) {
+    public ProductCatalog(String productCatalogName) {
+        this.productCatalogName = productCatalogName;
+    }
+    public ProductCatalog(String productCatalogName,ProductModel productModel) {
+        this.productCatalogName = productCatalogName;
         if (productModel == null) {
             throw new ProductNotFoundException("产品为空");
         }else if(productModel.getProductCode() == null){
@@ -72,6 +79,7 @@ public class ProductCatalog {
         productCode = productCode.toUpperCase(Locale.ROOT);
         return productCatalog.get(productCode);
     }
+
     //查询是否包含商品
     public boolean containsCode(String productCode) {
         if (productCode == null) {
@@ -88,6 +96,10 @@ public class ProductCatalog {
     //查询数量
     public int size() {
         return productCatalog.size();
+    }
+    //函数式编程
+    public void forEach(BiConsumer<String,ProductModel> biConsumer) {
+        productCatalog.forEach(biConsumer);
     }
 
     /*

@@ -1,4 +1,4 @@
-package com.xxby.web;
+package com.xxby.Exception;
 
 public class ProductNotFoundException extends RuntimeException {
     public ProductNotFoundException(String message) {
